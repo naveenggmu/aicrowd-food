@@ -305,6 +305,7 @@ class CocoDataset(CustomDataset):
 
     def load_annotations(self, ann_file):
         """Load annotation from COCO style annotation file.
+
         Args:
             ann_file (str): Path of annotation file.
         Returns:
@@ -324,6 +325,7 @@ class CocoDataset(CustomDataset):
 
     def get_ann_info(self, idx):
         """Get COCO annotation by index.
+
         Args:
             idx (int): Index of data.
         Returns:
@@ -337,6 +339,7 @@ class CocoDataset(CustomDataset):
 
     def get_cat_ids(self, idx):
         """Get COCO category ids by index.
+
         Args:
             idx (int): Index of data.
         Returns:
@@ -374,6 +377,7 @@ class CocoDataset(CustomDataset):
 
     def _parse_ann_info(self, img_info, ann_info):
         """Parse bbox and mask annotation.
+
         Args:
             ann_info (list[dict]): Annotation info of an image.
             with_mask (bool): Whether to parse mask annotations.
@@ -432,6 +436,7 @@ class CocoDataset(CustomDataset):
     def xyxy2xywh(self, bbox):
         """Convert ``xyxy`` style bounding boxes to ``xywh`` style for COCO
         evaluation.
+
         Args:
             bbox (numpy.ndarray): The bounding boxes, shape (4, ), in
                 ``xyxy`` order.
@@ -518,10 +523,11 @@ class CocoDataset(CustomDataset):
         return bbox_json_results, segm_json_results
 
     def results2json(self, results, outfile_prefix):
-        """Dump the detection results to a COCO style json file.
-        There are 3 types of results: proposals, bbox predictions, mask
-        predictions, and they have different data types. This method will
-        automatically recognize the type, and dump them to json files.
+        """Dump the detection results to a COCO style json file. There are 3
+        types of results: proposals, bbox predictions, mask predictions, and
+        they have different data types. This method will automatically
+        recognize the type, and dump them to json files.
+
         Args:
             results (list[list | tuple | ndarray]): Testing results of the
                 dataset.
@@ -580,6 +586,7 @@ class CocoDataset(CustomDataset):
 
     def format_results(self, results, jsonfile_prefix=None, **kwargs):
         """Format the results to json (standard format for COCO evaluation).
+
         Args:
             results (list[tuple | numpy.ndarray]): Testing results of the
                 dataset.
@@ -614,6 +621,7 @@ class CocoDataset(CustomDataset):
                  iou_thrs=None,
                  metric_items=None):
         """Evaluation in COCO protocol.
+
         Args:
             results (list[list | tuple]): Testing results of the dataset.
             metric (str | list[str]): Metrics to be evaluated. Options are
