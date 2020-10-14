@@ -342,4 +342,4 @@ test_cfg = dict(
         max_per_img=100,
         mask_thr_binary=0.5))
 work_dir = './model_outputs/htc_without_semantic_r50_fpn_1x_coco/allClasses/'
-gpu_ids = range(0, 1)
+gpu_ids = range(0, 2)
