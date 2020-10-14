@@ -1,3 +1,5 @@
+import os
+
 dataset_type = 'CocoDataset'
 data_root = '/content/data/'
 img_norm_cfg = dict(
@@ -118,8 +120,9 @@ checkpoint_config = dict(interval=1, create_symlink=False)
 log_config = dict(interval=50, hooks=[dict(type='WandbLoggerHook')])
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-load_from = '/content/drive/My Drive/foodMMdetRound3Baseline/model_outputs'
-            '/htc_without_semantic_r50_fpn_1x_coco/allClasses/epoch_4_2_set.pth'
+load_from = os.path.join('/content/drive/My Drive/foodMMdetRound3Baseline',
+                         'model_outputs/htc_without_semantic_r50_fpn_1x_coco'
+                         'allClasses/epoch_4_2_set.pth')
 resume_from = None
 workflow = [('train', 1)]
 model = dict(
