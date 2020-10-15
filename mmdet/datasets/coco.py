@@ -27,27 +27,94 @@ except AssertionError:
 @DATASETS.register_module()
 class CocoDataset(CustomDataset):
 
-    CLASSES = ('person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus',
-               'train', 'truck', 'boat', 'traffic light', 'fire hydrant',
-               'stop sign', 'parking meter', 'bench', 'bird', 'cat', 'dog',
-               'horse', 'sheep', 'cow', 'elephant', 'bear', 'zebra', 'giraffe',
-               'backpack', 'umbrella', 'handbag', 'tie', 'suitcase', 'frisbee',
-               'skis', 'snowboard', 'sports ball', 'kite', 'baseball bat',
-               'baseball glove', 'skateboard', 'surfboard', 'tennis racket',
-               'bottle', 'wine glass', 'cup', 'fork', 'knife', 'spoon', 'bowl',
-               'banana', 'apple', 'sandwich', 'orange', 'broccoli', 'carrot',
-               'hot dog', 'pizza', 'donut', 'cake', 'chair', 'couch',
-               'potted plant', 'bed', 'dining table', 'toilet', 'tv', 'laptop',
-               'mouse', 'remote', 'keyboard', 'cell phone', 'microwave',
-               'oven', 'toaster', 'sink', 'refrigerator', 'book', 'clock',
-               'vase', 'scissors', 'teddy bear', 'hair drier', 'toothbrush')
+    CLASSES = (
+        'water', 'pear', 'egg', 'grapes', 'butter', 'bread-white', 'jam',
+        'bread-whole-wheat', 'apple', 'tea-green',
+        'white-coffee-with-caffeine', 'tea-black',
+        'mixed-salad-chopped-without-sauce', 'cheese', 'tomato-sauce',
+        'pasta-spaghetti', 'carrot', 'onion',
+        'beef-cut-into-stripes-only-meat', 'rice-noodles-vermicelli',
+        'salad-leaf-salad-green', 'bread-grain', 'espresso-with-caffeine',
+        'banana', 'mixed-vegetables', 'bread-wholemeal', 'savoury-puff-pastry',
+        'wine-white', 'dried-meat', 'fresh-cheese', 'red-radish',
+        'hard-cheese', 'ham-raw', 'bread-fruit', 'oil-vinegar-salad-dressing',
+        'tomato', 'cauliflower', 'potato-gnocchi', 'wine-red', 'sauce-cream',
+        'pasta-linguini-parpadelle-tagliatelle', 'french-beans', 'almonds',
+        'dark-chocolate', 'mandarine', 'semi-hard-cheese', 'croissant',
+        'sushi', 'berries', 'biscuits', 'thickened-cream-35', 'corn',
+        'celeriac', 'alfa-sprouts', 'chickpeas', 'leaf-spinach', 'rice',
+        'chocolate-cookies', 'pineapple', 'tart', 'coffee-with-caffeine',
+        'focaccia', 'pizza-with-vegetables-baked', 'soup-vegetable',
+        'bread-toast', 'potatoes-steamed', 'spaetzle', 'frying-sausage',
+        'lasagne-meat-prepared', 'boisson-au-glucose-50g', 'ma1-4esli',
+        'peanut-butter', 'chips-french-fries', 'mushroom', 'ratatouille',
+        'veggie-burger', 'country-fries',
+        'yaourt-yahourt-yogourt-ou-yoghourt-natural', 'hummus', 'fish', 'beer',
+        'peanut', 'pizza-margherita-baked', 'pickle', 'ham-cooked',
+        'cake-chocolate', 'bread-french-white-flour', 'sauce-mushroom',
+        'rice-basmati', 'soup-of-lentils-dahl-dhal', 'pumpkin',
+        'witloof-chicory', 'vegetable-au-gratin-baked',
+        'balsamic-salad-dressing', 'pasta-penne', 'tea-peppermint',
+        'soup-pumpkin', 'quiche-with-cheese-baked-with-puff-pastry', 'mango',
+        'green-bean-steamed-without-addition-of-salt', 'cucumber',
+        'bread-half-white', 'pasta', 'beef-filet', 'pasta-twist',
+        'pasta-wholemeal', 'walnut', 'soft-cheese', 'salmon-smoked',
+        'sweet-pepper', 'sauce-soya', 'chicken-breast', 'rice-whole-grain',
+        'bread-nut', 'green-olives',
+        'roll-of-half-white-or-white-flour-with-large-void', 'parmesan',
+        'cappuccino', 'flakes-oat', 'mayonnaise', 'chicken',
+        'cheese-for-raclette', 'orange', 'goat-cheese-soft', 'tuna', 'tomme',
+        'apple-pie', 'rosti', 'broccoli', 'beans-kidney', 'white-cabbage',
+        'ketchup', 'salt-cake-vegetables-filled', 'pistachio', 'feta',
+        'salmon', 'avocado', 'sauce-pesto', 'salad-rocket',
+        'pizza-with-ham-baked', 'gruya-re', 'ristretto-with-caffeine',
+        'risotto-without-cheese-cooked', 'crunch-ma1-4esli',
+        'braided-white-loaf', 'peas',
+        'chicken-curry-cream-coconut-milk-curry-spices-paste',
+        'bolognaise-sauce', 'bacon-frying', 'salami', 'lentils', 'mushrooms',
+        'mashed-potatoes-prepared-with-full-fat-milk-with-butter', 'fennel',
+        'chocolate-mousse', 'corn-crisps', 'sweet-potato',
+        'bircherma1-4esli-prepared-no-sugar-added',
+        'beetroot-steamed-without-addition-of-salt', 'sauce-savoury', 'leek',
+        'milk', 'tea', 'fruit-salad', 'bread-rye', 'salad-lambs-ear',
+        'potatoes-au-gratin-dauphinois-prepared', 'red-cabbage', 'praline',
+        'bread-black', 'black-olives', 'mozzarella', 'bacon-cooking',
+        'pomegranate', 'hamburger-bread-meat-ketchup', 'curry-vegetarian',
+        'honey', 'juice-orange', 'cookies', 'mixed-nuts',
+        'breadcrumbs-unspiced', 'chicken-leg', 'raspberries',
+        'beef-sirloin-steak', 'salad-dressing', 'shrimp-prawn-large',
+        'sour-cream', 'greek-salad', 'sauce-roast', 'zucchini',
+        'greek-yaourt-yahourt-yogourt-ou-yoghourt', 'cashew-nut',
+        'meat-terrine-pata-c', 'chicken-cut-into-stripes-only-meat',
+        'couscous', 'bread-wholemeal-toast', 'craape-plain', 'bread-5-grain',
+        'tofu', 'water-mineral', 'ham-croissant', 'juice-apple',
+        'falafel-balls', 'egg-scrambled-prepared', 'brioche', 'bread-pita',
+        'pasta-haprnli', 'blue-mould-cheese', 'vegetable-mix-peas-and-carrots',
+        'quinoa', 'crisps', 'beef', 'butter-spread-puree-almond',
+        'beef-minced-only-meat',
+        'hazelnut-chocolate-spread-nutella-ovomaltine-caotina', 'chocolate',
+        'nectarine', 'ice-tea', 'applesauce-unsweetened-canned',
+        'syrup-diluted-ready-to-drink', 'sugar-melon', 'bread-sourdough',
+        'rusk-wholemeal', 'gluten-free-bread', 'shrimp-prawn-small',
+        'french-salad-dressing', 'pancakes', 'milk-chocolate', 'pork',
+        'dairy-ice-cream', 'guacamole', 'sausage', 'herbal-tea',
+        'fruit-coulis', 'water-with-lemon-juice', 'brownie', 'lemon',
+        'veal-sausage', 'dates', 'roll-with-pieces-of-chocolate',
+        'taboula-c-prepared-with-couscous', 'croissant-with-chocolate-filling',
+        'eggplant', 'sesame-seeds', 'cottage-cheese', 'fruit-tart',
+        'cream-cheese', 'tea-verveine', 'tiramisu',
+        'grits-polenta-maize-flour', 'pasta-noodles', 'artichoke',
+        'blueberries', 'mixed-seeds', 'caprese-salad-tomato-mozzarella',
+        'omelette-plain', 'hazelnut', 'kiwi', 'dried-raisins', 'kolhrabi',
+        'plums', 'beetroot-raw', 'cream', 'fajita-bread-only', 'apricots',
+        'kefir-drink', 'bread', 'strawberries', 'wine-rosa-c',
+        'watermelon-fresh', 'green-asparagus', 'white-asparagus', 'peach')
 
     def load_annotations(self, ann_file):
         """Load annotation from COCO style annotation file.
 
         Args:
             ann_file (str): Path of annotation file.
-
         Returns:
             list[dict]: Annotation info from COCO api.
         """
@@ -68,7 +135,6 @@ class CocoDataset(CustomDataset):
 
         Args:
             idx (int): Index of data.
-
         Returns:
             dict: Annotation info of specified index.
         """
@@ -83,7 +149,6 @@ class CocoDataset(CustomDataset):
 
         Args:
             idx (int): Index of data.
-
         Returns:
             list[int]: All categories in the image of specified index.
         """
@@ -123,7 +188,6 @@ class CocoDataset(CustomDataset):
         Args:
             ann_info (list[dict]): Annotation info of an image.
             with_mask (bool): Whether to parse mask annotations.
-
         Returns:
             dict: A dict containing the following keys: bboxes, bboxes_ignore,\
                 labels, masks, seg_map. "masks" are raw annotations and not \
@@ -183,7 +247,6 @@ class CocoDataset(CustomDataset):
         Args:
             bbox (numpy.ndarray): The bounding boxes, shape (4, ), in
                 ``xyxy`` order.
-
         Returns:
             list[float]: The converted bounding boxes, in ``xywh`` order.
         """
@@ -267,11 +330,10 @@ class CocoDataset(CustomDataset):
         return bbox_json_results, segm_json_results
 
     def results2json(self, results, outfile_prefix):
-        """Dump the detection results to a COCO style json file.
-
-        There are 3 types of results: proposals, bbox predictions, mask
-        predictions, and they have different data types. This method will
-        automatically recognize the type, and dump them to json files.
+        """Dump the detection results to a COCO style json file. There are 3
+        types of results: proposals, bbox predictions, mask predictions, and
+        they have different data types. This method will automatically
+        recognize the type, and dump them to json files.
 
         Args:
             results (list[list | tuple | ndarray]): Testing results of the
@@ -280,7 +342,6 @@ class CocoDataset(CustomDataset):
                 prefix is "somepath/xxx", the json files will be named
                 "somepath/xxx.bbox.json", "somepath/xxx.segm.json",
                 "somepath/xxx.proposal.json".
-
         Returns:
             dict[str: str]: Possible keys are "bbox", "segm", "proposal", and \
                 values are corresponding filenames.
@@ -339,7 +400,6 @@ class CocoDataset(CustomDataset):
             jsonfile_prefix (str | None): The prefix of json files. It includes
                 the file path and the prefix of filename, e.g., "a/b/prefix".
                 If not specified, a temp file will be created. Default: None.
-
         Returns:
             tuple: (result_files, tmp_dir), result_files is a dict containing \
                 the json filepaths, tmp_dir is the temporal directory created \
@@ -393,7 +453,6 @@ class CocoDataset(CustomDataset):
                 used when ``metric=='proposal'``, ``['mAP', 'mAP_50', 'mAP_75',
                 'mAP_s', 'mAP_m', 'mAP_l']`` will be used when
                 ``metric=='bbox' or metric=='segm'``.
-
         Returns:
             dict[str, float]: COCO style evaluation metric.
         """
